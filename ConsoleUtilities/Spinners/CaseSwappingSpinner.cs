@@ -20,11 +20,8 @@ public sealed class CaseSwappingSpinner : Spinner
                                       , nameof(text));
         }
 
-        var forward = Enumerable.Range(0
-                                     , text.Length)
-                                .Select(i => SwapCharacter(text
-                                                         , i))
-                                .ToList();
+        var forward = text.Select(( _, index ) => GetAnimatedFrame(text, index))
+                          .ToList();
 
         var backward = forward.Skip(1)
                               .Take(forward.Count - 2)
@@ -47,5 +44,49 @@ public sealed class CaseSwappingSpinner : Spinner
         }
 
         return new string(chars);
+    }
+
+    private string GetAnimatedFrame( string text
+                                   , int    index )
+    {
+        var chars = text.ToCharArray();
+
+        chars[index] = TransformChar(chars[index]);
+
+        return new string(chars);
+    }
+
+    private char TransformChar( char c )
+    {
+        return c switch
+        {
+                //Alphas
+                >= 'a' and <= 'z' => char.ToUpper(c)
+              , >= 'A' and <= 'Z' => char.ToLower(c)
+                
+                //Special characters
+              , '.'  => '\''
+              , ':'  => ';'
+              , ';'  => ':'
+              , '-'  => '='
+              , '='  => '-'
+              , '_'  => '¯'
+              , '/'  => '\\'
+              , '\\' => '/'
+              , ' '  => '·'
+                
+                //Numbers
+              , '0' => 'O'
+              , '1' => '|'
+              , '2' => 'Z'
+              , '3' => 'E'
+              , '5' => 'S'
+              , '6' => 'G'
+              , '7' => 'L'
+              , '8' => '&'
+              , '9' => 'P'
+              
+              , _ => c
+        };
     }
 }

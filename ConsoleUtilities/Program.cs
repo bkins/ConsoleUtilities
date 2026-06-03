@@ -20,10 +20,10 @@ static async Task BasicSpinnerDemo()
     AnsiConsole.WriteLine();
     AnsiConsole.MarkupLine("[yellow]Basic Spinner Demo[/]");
 
-    await SpinnerRunner.RunAsync("Loading"
+    await SpinnerRunner.RunAsync("Loading133./?"
                                , async _ =>
                                  {
-                                     await Task.Delay(2000);
+                                     await Task.Delay(16000);
                                  });
 }
 
