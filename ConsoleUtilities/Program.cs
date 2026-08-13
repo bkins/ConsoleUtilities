@@ -1,4 +1,4 @@
-﻿using ConsoleUtilities.Spinners;
+using ConsoleUtilities.Spinners;
 using Spectre.Console;
 
 Console.WriteLine("Spinner Test Harness");
@@ -23,7 +23,7 @@ static async Task BasicSpinnerDemo()
     await SpinnerRunner.RunAsync("Loading133./?"
                                , async _ =>
                                  {
-                                     await Task.Delay(16000);
+                                     await Task.Delay(1500);
                                  });
 }
 
@@ -32,22 +32,22 @@ static async Task ProgressUpdatesDemo()
     AnsiConsole.WriteLine();
     AnsiConsole.MarkupLine("[yellow]Progress Update Demo[/]");
 
-    await SpinnerRunner.RunAsync("Benchmark",
-                                 async report =>
+    await SpinnerRunner.RunAsync("Benchmark"
+                               , async report =>
                                  {
                                      report("Loading benchmark files...");
-                                     await Task.Delay(3000);
+                                     await Task.Delay(500);
 
                                      report("Running qwen2.5...");
-                                     await Task.Delay(3000);
+                                     await Task.Delay(500);
 
                                      report("Running llama3...");
-                                     await Task.Delay(3000);
+                                     await Task.Delay(500);
 
                                      report("Exporting results...");
-                                     await Task.Delay(3000);
-                                 },
-                                 Color.Cyan);
+                                     await Task.Delay(500);
+                                 }
+                               , Color.Cyan);
 }
 
 static async Task ReturnValueDemo()
