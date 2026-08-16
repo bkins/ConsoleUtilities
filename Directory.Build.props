@@ -6,4 +6,11 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <!-- Wire CP.Analyzers as an analyzer for all C# projects in Rider / Visual Studio / dotnet build -->
+  <ItemGroup Condition="Exists('C:\Users\benho\source\repos\CP.Shared.Primitives\CP.Shared.Primitives\CP.Analyzers\CP.Analyzers.csproj') and '$(MSBuildProjectName)' != 'CP.Analyzers' and '$(MSBuildProjectName)' != 'CP.Analyzers.Tests'">
+    <ProjectReference Include="C:\Users\benho\source\repos\CP.Shared.Primitives\CP.Shared.Primitives\CP.Analyzers\CP.Analyzers.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
 </Project>
