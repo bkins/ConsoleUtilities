@@ -1,4 +1,4 @@
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace ConsoleUtilities.Spinners;
 
@@ -14,7 +14,7 @@ public sealed class CaseSwappingSpinner : Spinner
 
     public CaseSwappingSpinner( string text )
     {
-        if (string.IsNullOrWhiteSpace(text))
+        if (text.HasNoValue())
         {
             throw new ArgumentException("Spinner text cannot be empty."
                                       , nameof(text));
